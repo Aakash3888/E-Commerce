@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Kanak Shopping - Bharat Ki Apni Shopping Destination. Best Prices on Fashion, Electronics, Home & More!">
+    <meta name="theme-color" content="#e91e63">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Kanak Shopping | Best Online Shopping India</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="kanak.css">
+</head>
+<body>
+    <!-- Splash -->
+    <div id="splash" class="splash">
+        <div class="splash-inner">
+            <div class="splash-logo">
+                <div class="splash-icon">
+                    <svg viewBox="0 0 80 80" fill="none">
+                        <rect width="80" height="80" rx="20" fill="url(#splashGrad)"/>
+                        <text x="40" y="52" text-anchor="middle" font-size="36" font-weight="800" fill="white" font-family="Poppins">K</text>
+                        <defs>
+                            <linearGradient id="splashGrad" x1="0" y1="0" x2="80" y2="80">
+                                <stop offset="0%" stop-color="#e91e63"/>
+                                <stop offset="100%" stop-color="#ff5722"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1>Kanak Shopping</h1>
+                <p>Bharat Ki Apni Shopping</p>
+            </div>
+            <div class="splash-loader">
+                <div class="splash-bar"><div class="splash-progress"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="app">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="header-top">
+                <div class="header-brand" onclick="goHome()">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 36 36" fill="none">
+                            <rect width="36" height="36" rx="10" fill="url(#hGrad)"/>
+                            <text x="18" y="24" text-anchor="middle" font-size="18" font-weight="800" fill="white" font-family="Poppins">K</text>
+                            <defs>
+                                <linearGradient id="hGrad" x1="0" y1="0" x2="36" y2="36">
+                                    <stop offset="0%" stop-color="#e91e63"/>
+                                    <stop offset="100%" stop-color="#ff5722"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">Kanak</span>
+                        <span class="brand-sub">Shopping</span>
+                    </div>
+                </div>
+                <div class="header-search" onclick="openSearch()">
+                    <i class="fas fa-search"></i>
+                    <span>Search for brands & products</span>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" onclick="toggleWishlist()" id="wishlistHeaderBtn">
+                        <i class="far fa-heart"></i>
+                        <span class="badge" id="wishlistBadge" style="display:none">0</span>
+                    </button>
+                    <button class="header-btn" onclick="openCart()">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="badge" id="cartBadge" style="display:none">0</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-header">
+                <button class="search-back" onclick="closeSearch()"><i class="fas fa-arrow-left"></i></button>
+                <div class="search-input-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for sarees, kurtis, shoes..." oninput="handleSearch(this.value)">
+                    <button class="search-clear" onclick="clearSearch()" id="searchClear" style="display:none"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="search-body" id="searchBody">
+                <div class="search-trending">
+                    <h3>Trending Searches</h3>
+                    <div class="trending-tags">
+                        <span class="trend-tag" onclick="searchFor('Sarees')"><i class="fas fa-fire"></i> Sarees</span>
+                        <span class="trend-tag" onclick="searchFor('Kurti')"><i class="fas fa-fire"></i> Kurti Set</span>
+                        <span class="trend-tag" onclick="searchFor('Shoes')"><i class="fas fa-fire"></i> Shoes</span>
+                        <span class="trend-tag" onclick="searchFor('Watch')"><i class="fas fa-fire"></i> Watches</span>
+                        <span class="trend-tag" onclick="searchFor('Jewellery')"><i class="fas fa-fire"></i> Jewellery</span>
+                        <span class="trend-tag" onclick="searchFor('Suits')"><i class="fas fa-fire"></i> Suits</span>
+                        <span class="trend-tag" onclick="searchFor('Lehenga')"><i class="fas fa-fire"></i> Lehenga</span>
+                        <span class="trend-tag" onclick="searchFor('Phone')"><i class="fas fa-fire"></i> Mobile</span>
+                    </div>
+                </div>
+                <div id="searchResults" class="search-results" style="display:none"></div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main" id="main">
+
+            <!-- ===== HOME ===== -->
+            <section class="page active" id="page-home">
+                <!-- Location Bar -->
+                <div class="location-bar">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Deliver to: <strong>New Delhi, 110001</strong></span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <!-- Banner Slider -->
+                <div class="banner-section">
+                    <div class="banner-slider" id="bannerSlider">
+                        <div class="banner-slide" style="background: linear-gradient(135deg, #e91e63, #ff5722)">
+                            <div class="banner-content">
+                                <span class="banner-tag">NEW ARRIVALS</span>
+                                <h2>Monsoon Sale<br><span>Upto 80% OFF</span></h2>
+                                <p>Fashion starting at ₹99</p>
+                                <button class="banner-btn" onclick="navigateTo('category','fashion')">Shop Now</button>
+                            </div>
+                            <div class="banner-emoji">👗</div>
+                        </div>
+                        <div class="banner-slide" style="background: linear-gradient(135deg, #9c27b0, #673ab7)">
+                            <div class="banner-content">
+                                <span class="banner-tag">BEST DEALS</span>
+                                <h2>Electronics<br><span>Upto 70% OFF</span></h2>
+                                <p>Phones, Gadgets & More</p>
+                                <button class="banner-btn" onclick="navigateTo('category','electronics')">Shop Now</button>
+                            </div>
+                            <div class="banner-emoji">📱</div>
+                        </div>
+                        <div class="banner-slide" style="background: linear-gradient(135deg, #ff9800, #f44336)">
+                            <div class="banner-content">
+                                <span class="banner-tag">FLASH SALE</span>
+                                <h2>Home & Kitchen<br><span>Upto 60% OFF</span></h2>
+                                <p>Starting at ₹49</p>
+                                <button class="banner-btn" onclick="navigateTo('category','home')">Shop Now</button>
+                            </div>
+                            <div class="banner-emoji">🏠</div>
+                        </div>
+                    </div>
+                    <div class="banner-dots" id="bannerDots"></div>
+                </div>
+
+                <!-- Category Scroll -->
+                <div class="section">
+                    <div class="section-row">
+                        <h3 class="section-title">Shop by Category</h3>
+                        <a class="section-more" onclick="navigateTo('categories')">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="category-scroll">
+                        <div class="category-item" onclick="navigateTo('category','women')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0)">👗</div>
+                            <span>Women</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','men')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#e3f2fd,#90caf9)">👔</div>
+                            <span>Men</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','jewellery')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#fff8e1,#ffe082)">💍</div>
+                            <span>Jewellery</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','electronics')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7)">📱</div>
+                            <span>Electronics</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','home')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#fff3e0,#ffcc80)">🏠</div>
+                            <span>Home</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','beauty')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#fce4ec,#f48fb1)">💄</div>
+                            <span>Beauty</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','shoes')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#efebe9,#bcaaa4)">👟</div>
+                            <span>Shoes</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','kids')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#e0f7fa,#80deea)">🧸</div>
+                            <span>Kids</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','bags')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#f3e5f5,#ce93d8)">👜</div>
+                            <span>Bags</span>
+                        </div>
+                        <div class="category-item" onclick="navigateTo('category','sports')">
+                            <div class="cat-icon" style="background:linear-gradient(135deg,#e8eaf6,#9fa8da)">⚽</div>
+                            <span>Sports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flash Sale Timer -->
+                <div class="section flash-section">
+                    <div class="section-row">
+                        <div class="flash-header">
+                            <i class="fas fa-bolt flash-icon"></i>
+                            <h3 class="section-title">Flash Sale</h3>
+                            <div class="flash-timer" id="flashTimer">
+                                <span class="timer-box">05</span>:
+                                <span class="timer-box">23</span>:
+                                <span class="timer-box">47</span>
+                            </div>
+                        </div>
+                        <a class="section-more" onclick="navigateTo('flash')">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="flash-scroll" id="flashScroll"></div>
+                </div>
+
+                <!-- Deals Grid -->
+                <div class="section">
+                    <div class="section-row">
+                        <h3 class="section-title">Top Deals For You</h3>
+                    </div>
+                    <div class="deals-grid" id="dealsGrid"></div>
+                </div>
+
+                <!-- Brand Marquee -->
+                <div class="brand-marquee">
+                    <div class="marquee-track">
+                        <div class="marquee-content">
+                            <span>★ Free Delivery on ₹499+</span>
+                            <span>★ 7 Day Return Policy</span>
+                            <span>★ 100% Payment Secure</span>
+                            <span>★ Cash on Delivery Available</span>
+                            <span>★ Lowest Prices Guaranteed</span>
+                            <span>★ Free Delivery on ₹499+</span>
+                            <span>★ 7 Day Return Policy</span>
+                            <span>★ 100% Payment Secure</span>
+                            <span>★ Cash on Delivery Available</span>
+                            <span>★ Lowest Prices Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Products -->
+                <div class="section">
+                    <div class="section-row">
+                        <h3 class="section-title">Popular Near You</h3>
+                        <a class="section-more" onclick="navigateTo('allProducts')">View All <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="products-grid" id="popularGrid"></div>
+                </div>
+
+                <!-- Why Kanak -->
+                <div class="section">
+                    <h3 class="section-title center">Why Kanak Shopping?</h3>
+                    <div class="features-row">
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
+                            <h4>Free Delivery</h4>
+                            <p>On orders above ₹499</p>
+                        </div>
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h4>Secure Payment</h4>
+                            <p>100% secure checkout</p>
+                        </div>
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fas fa-rotate-left"></i></div>
+                            <h4>Easy Returns</h4>
+                            <p>7-day return policy</p>
+                        </div>
+                        <div class="feature-box">
+                            <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                            <h4>24/7 Support</h4>
+                            <p>Call: 1800-XXX-XXXX</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Spacer -->
+                <div style="height:20px"></div>
+            </section>
+
+            <!-- ===== CATEGORIES ===== -->
+            <section class="page" id="page-categories">
+                <div class="page-top">
+                    <h2>All Categories</h2>
+                </div>
+                <div class="cat-grid">
+                    <div class="cat-grid-item" onclick="navigateTo('category','women')">
+                        <div class="cgi-icon">👗</div><span>Women Fashion</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','men')">
+                        <div class="cgi-icon">👔</div><span>Men Fashion</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','jewellery')">
+                        <div class="cgi-icon">💍</div><span>Jewellery</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','electronics')">
+                        <div class="cgi-icon">📱</div><span>Electronics</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','home')">
+                        <div class="cgi-icon">🏠</div><span>Home & Kitchen</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','beauty')">
+                        <div class="cgi-icon">💄</div><span>Beauty & Health</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','shoes')">
+                        <div class="cgi-icon">👟</div><span>Footwear</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','kids')">
+                        <div class="cgi-icon">🧸</div><span>Kids</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','bags')">
+                        <div class="cgi-icon">👜</div><span>Bags & Luggage</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','sports')">
+                        <div class="cgi-icon">⚽</div><span>Sports</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','books')">
+                        <div class="cgi-icon">📚</div><span>Books</span>
+                    </div>
+                    <div class="cat-grid-item" onclick="navigateTo('category','pets')">
+                        <div class="cgi-icon">🐕</div><span>Pet Supplies</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== CATEGORY PRODUCTS ===== -->
+            <section class="page" id="page-category">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2 id="categoryTitle">Category</h2>
+                    <button class="page-action" onclick="toggleFilter()"><i class="fas fa-sliders"></i></button>
+                </div>
+                <div class="filter-bar" id="filterBar">
+                    <button class="filter-pill active" data-sort="popular" onclick="sortProducts('popular',this)">Popular</button>
+                    <button class="filter-pill" data-sort="priceLow" onclick="sortProducts('priceLow',this)">Price: Low</button>
+                    <button class="filter-pill" data-sort="priceHigh" onclick="sortProducts('priceHigh',this)">Price: High</button>
+                    <button class="filter-pill" data-sort="newest" onclick="sortProducts('newest',this)">Newest</button>
+                    <button class="filter-pill" data-sort="rating" onclick="sortProducts('rating',this)">Rating</button>
+                    <button class="filter-pill" data-sort="discount" onclick="sortProducts('discount',this)">Discount</button>
+                </div>
+                <div class="products-grid" id="categoryGrid"></div>
+            </section>
+
+            <!-- ===== ALL PRODUCTS ===== -->
+            <section class="page" id="page-allProducts">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2>All Products</h2>
+                </div>
+                <div class="products-grid" id="allProductsGrid"></div>
+            </section>
+
+            <!-- ===== FLASH SALE ===== -->
+            <section class="page" id="page-flash">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2><i class="fas fa-bolt" style="color:#ff9800"></i> Flash Sale</h2>
+                </div>
+                <div class="products-grid" id="flashGrid"></div>
+            </section>
+
+            <!-- ===== PRODUCT DETAIL ===== -->
+            <section class="page" id="page-product">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2>Product Details</h2>
+                    <button class="page-action" onclick="shareProduct()"><i class="fas fa-share-nodes"></i></button>
+                </div>
+                <div id="productDetail"></div>
+            </section>
+
+            <!-- ===== CART ===== -->
+            <section class="page" id="page-cart">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2>My Cart</h2>
+                </div>
+                <div id="cartContent"></div>
+            </section>
+
+            <!-- ===== WISHLIST ===== -->
+            <section class="page" id="page-wishlist">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2>My Wishlist</h2>
+                </div>
+                <div id="wishlistContent"></div>
+            </section>
+
+            <!-- ===== ACCOUNT ===== -->
+            <section class="page" id="page-account">
+                <div class="account-header">
+                    <div class="account-avatar" id="accountAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 id="accountName">Welcome!</h2>
+                    <p id="accountPhone">Login to access your account</p>
+                </div>
+                <div id="accountContent">
+                    <div class="account-menu">
+                        <div class="account-item" onclick="navigateTo('orders')">
+                            <i class="fas fa-box"></i><span>My Orders</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item" onclick="navigateTo('wishlist')">
+                            <i class="fas fa-heart"></i><span>My Wishlist</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item">
+                            <i class="fas fa-map-marker-alt"></i><span>Saved Addresses</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item">
+                            <i class="fas fa-credit-card"></i><span>Payment Methods</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item">
+                            <i class="fas fa-gift"></i><span>Coupons & Offers</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item">
+                            <i class="fas fa-headset"></i><span>Help & Support</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item">
+                            <i class="fas fa-gear"></i><span>Settings</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="account-item" onclick="showLogin()">
+                            <i class="fas fa-right-from-bracket"></i><span id="loginLogout">Login / Sign Up</span><i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== ORDERS ===== -->
+            <section class="page" id="page-orders">
+                <div class="page-top">
+                    <button class="page-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+                    <h2>My Orders</h2>
+                </div>
+                <div id="ordersContent">
+                    <div class="empty-state">
+                        <div class="empty-icon">📦</div>
+                        <h3>No orders yet</h3>
+                        <p>Start shopping to see your orders here</p>
+                        <button class="btn-primary" onclick="goHome()">Shop Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== LOGIN ===== -->
+            <section class="page" id="page-login">
+                <div class="login-page">
+                    <div class="login-header">
+                        <h2>Welcome to<br><span class="brand-gradient">Kanak Shopping</span></h2>
+                        <p>Enter your phone number to login/signup</p>
+                    </div>
+                    <form id="loginForm" class="login-form">
+                        <div class="input-group">
+                            <span class="input-prefix">+91</span>
+                            <input type="tel" id="loginPhone" placeholder="Enter phone number" maxlength="10" required>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">Continue</button>
+                    </form>
+                    <div class="login-divider"><span>OR</span></div>
+                    <button class="btn-social" onclick="showLogin()"><i class="fab fa-google"></i> Continue with Google</button>
+                    <p class="login-terms">By continuing, you agree to our <a>Terms of Use</a> and <a>Privacy Policy</a></p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Nav -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="bnav active" data-page="home" onclick="navigateTo('home')">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="bnav" data-page="categories" onclick="navigateTo('categories')">
+                <i class="fas fa-grid-2"></i>
+                <span>Categories</span>
+            </button>
+            <button class="bnav bnav-center" onclick="openCart()">
+                <div class="bnav-center-icon"><i class="fas fa-shopping-bag"></i></div>
+            </button>
+            <button class="bnav" data-page="wishlist" onclick="toggleWishlist()">
+                <i class="far fa-heart"></i>
+                <span>Wishlist</span>
+            </button>
+            <button class="bnav" data-page="account" onclick="navigateTo('account')">
+                <i class="far fa-user"></i>
+                <span>Account</span>
+            </button>
+        </nav>
+
+        <!-- Toast -->
+        <div id="toast" class="toast">
+            <i class="fas fa-check-circle"></i>
+            <span id="toastMsg">Added to cart!</span>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="modal-overlay" id="loginModal" style="display:none">
+            <div class="modal-card">
+                <button class="modal-close" onclick="closeLogin()"><i class="fas fa-times"></i></button>
+                <div class="modal-body">
+                    <div class="modal-icon">👋</div>
+                    <h2>Login to Kanak</h2>
+                    <p>Get access to orders, wishlist & more</p>
+                    <form id="modalLoginForm">
+                        <div class="input-group">
+                            <span class="input-prefix">+91</span>
+                            <input type="tel" id="modalPhone" placeholder="Phone number" maxlength="10" required>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">Send OTP</button>
+                    </form>
+                    <p class="login-terms">By continuing, you agree to our <a>Terms</a> and <a>Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="kanak.js"></script>
+</body>
+</html>
